@@ -24,7 +24,11 @@
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_stmpe811.h"
 #include <stdio.h>
-#include <stdbool.h>
+#include "core.h"
+//#include <stdbool.h>
+//#include "LCD.h"
+
+
 
 extern TypeMoney budget;
 extern TypeMoney bet;
@@ -32,9 +36,15 @@ extern bool game;
 extern bool betchange;
 extern bool resign;
 
-
+extern int ticks;
+ 
+ 
+void SystickHandler(void){
+	ticks++;
+}
 
 int main(void) {
+  SysTick_Config(SystemCoreClock / 1000);
 	LCDInitialization();
 	print_choose();
 	change_money(&budget);
@@ -44,7 +54,8 @@ int main(void) {
 		show_menu();
 		change_menu();
 		if (game == true){
-		  PlayCards(budget, bet);
+		  PlayCards(&budget, &bet);
+			game = false;
 		}
 		else if(betchange == true) {
 	

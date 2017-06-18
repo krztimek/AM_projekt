@@ -1,0 +1,41 @@
+#include "LCD.h"
+
+Rectangle A = {.x = 10, .y = 170, .length = 210, .width = 40, .text = "+" };
+Rectangle B = {.x = 10, .y = 220, .length = 210, .width = 40, .text = "-"};
+Rectangle C = {.x = 10, .y = 270, .length = 210, .width = 40, .text = "ACCEPT" };
+
+TM_STMPE811_TouchData touchData;
+
+void LCDInitialization(){
+/* Initialize system */
+	SystemInit();
+	
+	/* Initialize LCD */
+	TM_ILI9341_Init();
+	
+	/* Initialize delay */
+	TM_DELAY_Init();
+	
+	/* Rotate LCD */
+	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
+	
+	/* Fill with orange color */
+//	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+	
+	/* Initialize Touch */
+	if (TM_STMPE811_Init() != TM_STMPE811_State_Ok) {
+		TM_ILI9341_Puts(20, 20, "STMPE811 Error", &TM_Font_11x18, ILI9341_COLOR_ORANGE, ILI9341_COLOR_BLACK);
+		
+		while (1);
+	}
+	
+	/* Select touch screen orientation */
+	touchData.orientation = TM_STMPE811_Orientation_Portrait_2;
+	
+}
+
+
+void Draw_Rectangle(Rectangle rect, uint32_t color){
+		TM_ILI9341_DrawFilledRectangle(rect.x, rect.y, rect.x+rect.length, rect.y+rect.width, color); 
+		TM_ILI9341_Puts(rect.length/2, rect.y+rect.width/3, rect.text, &TM_Font_11x18, ILI9341_COLOR_BLACK, color);
+}
