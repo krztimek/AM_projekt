@@ -33,22 +33,23 @@ char text[10];
 /*
 Funkcja Cards_Randomize - tasowanie kart
 */
-void Cards_Randomize(void);
+uint8_t rand_function(void);
+void cards_randomize(void);
 
 /*
-Funkcja StringToPoint - zamiana karry na przypisana do niej ilosc punktów
+Funkcja StringToPoint - zamiana karry na przypisana do niej ilosc punktï¿½w
 */
 int StringToPoint(int index);
 
-/* 
-ShowCards - Funkcja wypisujaca na ekran karty i ilosc punktów danego uzytkownika
+/*
+ShowCards - Funkcja wypisujaca na ekran karty i ilosc punktï¿½w danego uzytkownika
 Player P - zawodnik lub dealer
-iterator - ilosc kart, które nalezy wypisac
+iterator - ilosc kart, ktï¿½re nalezy wypisac
 */
 void ShowCards(Player P, int iterator);
 
 /*
-PlayCards - Funkcja w której okreslona jest cala funkcjonalnosc gry
+PlayCards - Funkcja w ktï¿½rej okreslona jest cala funkcjonalnosc gry
 */
 void PlayCards(TypeMoney* A, TypeMoney* B);
 
@@ -79,4 +80,3 @@ void exit_game(void);
 
 
 #endif
-
