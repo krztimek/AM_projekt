@@ -18,8 +18,10 @@
 ".\targets\stm32f429_discovery\main.o"
 ".\targets\stm32f429_discovery\stm32f4xx_it.o"
 ".\targets\stm32f429_discovery\system_stm32f4xx.o"
-".\targets\stm32f429_discovery\cards.o"
+".\targets\stm32f429_discovery\delay.o"
+".\targets\stm32f429_discovery\lcd.o"
 ".\targets\stm32f429_discovery\menu.o"
+".\targets\stm32f429_discovery\core.o"
 --strict --scatter ".\Targets\STM32F429_Discovery\project.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

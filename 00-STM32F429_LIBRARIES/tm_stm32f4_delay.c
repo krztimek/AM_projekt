@@ -45,8 +45,8 @@ void TM_DELAY_TIM_IRQ_HANDLER(void) {
 void TimingDelay_Decrement(void) {
 	uint8_t i;
 #else
-void SysTick_Handler(void) {
-	uint8_t i;
+/*void SysTick_Handler(void) {
+	uint8_t i;*/
 #endif
 	
 	TM_Time++;

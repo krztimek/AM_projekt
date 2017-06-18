@@ -737,14 +737,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>cards.c</FileName>
+              <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\User\cards.c</FilePath>
+              <FilePath>.\User\delay.c</FilePath>
             </File>
             <File>
-              <FileName>cards.h</FileName>
+              <FileName>delay.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\User\cards.h</FilePath>
+              <FilePath>.\User\delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCD.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\LCD.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\LCD.h</FilePath>
             </File>
             <File>
               <FileName>menu.c</FileName>
@@ -756,10 +766,61 @@
               <FileType>5</FileType>
               <FilePath>.\User\menu.h</FilePath>
             </File>
+            <File>
+              <FileName>core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\core.c</FilePath>
+            </File>
+            <File>
+              <FileName>core.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\User\core.h</FilePath>
+            </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>
   </Targets>
+
+  <RTE>
+    <apis/>
+    <components>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.0.1" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="5.0.1"/>
+        <targetInfos>
+          <targetInfo name="STM32F429-Discovery"/>
+        </targetInfos>
+      </component>
+    </components>
+    <files>
+      <file attr="config" category="header" name="CMSIS\Driver\Config\RTE_Device.h" version="2.4.4">
+        <instance index="0" removed="1">RTE\Device\STM32F429ZITx\RTE_Device.h</instance>
+        <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.6.0" condition="STM32F4 Framework Classic"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.11.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" condition="STM32F429xx_ARMCC" name="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429xx.s" version="2.6.0">
+        <instance index="0" removed="1">RTE\Device\STM32F429ZITx\startup_stm32f429xx.s</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.0" condition="STM32F4 CMSIS"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.11.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="header" name="MDK\Templates\Inc\stm32f4xx_hal_conf.h" version="1.6.0">
+        <instance index="0" removed="1">RTE\Device\STM32F429ZITx\stm32f4xx_hal_conf.h</instance>
+        <component Capiversion="1.0.0" Cclass="Device" Cgroup="STM32Cube Framework" Csub="Classic" Cvendor="Keil" Cversion="1.6.0" condition="STM32F4 Framework Classic"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.11.0"/>
+        <targetInfos/>
+      </file>
+      <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c" version="2.6.0">
+        <instance index="0" removed="1">RTE\Device\STM32F429ZITx\system_stm32f4xx.c</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="2.6.0" condition="STM32F4 CMSIS"/>
+        <package name="STM32F4xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="2.11.0"/>
+        <targetInfos/>
+      </file>
+    </files>
+  </RTE>
 
 </Project>

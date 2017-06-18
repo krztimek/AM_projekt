@@ -111,11 +111,13 @@ void UsageFault_Handler(void)
   * @brief  This function handles SVCall exception.
   * @param  None
   * @retval None
-  */
+ 
+	I commented SVC/PendSV and Systick - 15.06.2017 KT
+	*/
 void SVC_Handler(void)
 {
 }
-
+ 
 /**
   * @brief  This function handles Debug Monitor exception.
   * @param  None
@@ -147,13 +149,13 @@ __weak void TimingDelay_Decrement(void) {
 /**
   * @brief  This function handles SysTick Handler.
   * @param  None
-  * @retval None
-  */
+  * @retval None*/
+ 
 void SysTick_Handler(void)
 {
 	TimingDelay_Decrement();
 }
-
+ 
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
@@ -166,10 +168,10 @@ void SysTick_Handler(void)
   * @param  None
   * @retval None
   */
-/*void PPP_IRQHandler(void)
+/*
+void PPP_IRQHandler(void)
 {
 }*/
-
 /**
   * @}
   */ 

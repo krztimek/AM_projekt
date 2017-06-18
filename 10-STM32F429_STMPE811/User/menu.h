@@ -5,10 +5,9 @@
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_stmpe811.h"
 #include <stdbool.h>
-#include <time.h>
 #include <stdio.h>
 #include "cards.h"
-
+#include "core.h"
 
 typedef struct {
 	int value;
@@ -21,22 +20,63 @@ typedef struct {
 char name[16];
 uint8_t start_index;
 bool ifdealer;
-char cardset[10]; 
 } Player;
 
+typedef struct {
+uint8_t x;
+uint16_t y;
+uint8_t length;
+uint8_t width;
+char text[10];
+} Rectangle;
+
+/*
+Funkcja Cards_Randomize - tasowanie kart
+*/
 void Cards_Randomize(void);
 
+/*
+Funkcja StringToPoint - zamiana karry na przypisana do niej ilosc punktów
+*/
 int StringToPoint(int index);
-void ShowCards( Player player);
-void PlayCards(TypeMoney A, TypeMoney B);
 
+/* 
+ShowCards - Funkcja wypisujaca na ekran karty i ilosc punktów danego uzytkownika
+Player P - zawodnik lub dealer
+iterator - ilosc kart, które nalezy wypisac
+*/
+void ShowCards(Player P, int iterator);
+
+/*
+PlayCards - Funkcja w której okreslona jest cala funkcjonalnosc gry
+*/
+void PlayCards(TypeMoney* A, TypeMoney* B);
+
+/*
+Draw_Rectangle - Funkcja rysujaca prostokat o okreslonym ksztalcie
+*/
+void Draw_Rectangle(Rectangle rect, uint32_t color);
+
+/*
+LCDInitialization - Inicjalizacja wyswietlacza LCD
+*/
 void LCDInitialization(void);
+
+
 void print_choose(void);
+
+
 void change_money(TypeMoney* Money);
+
+
 void show_menu(void);
+
+
 void change_menu(void);
+
+
 void exit_game(void);
-void Play(void);
+
 
 #endif
 
