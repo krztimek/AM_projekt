@@ -6,26 +6,40 @@ bool game = false;
 bool betchange = false;
 bool resign = false;
 
+
 uint16_t start_value;
 const uint8_t cardsSetSize = 52;
 char cardsSet[cardsSetSize + 1] = "234567891JQKA234567891JQKA234567891JQKA234567891JQKA";//set of available cards, +1 because of '/0' at end
 char cards[cardsSetSize];// here will be put random cards from cardsSet (function cards_randomize)
 char stringa[30];
 
+int ticks = 0;
 
-TypeMoney budget = { .value = 100,.type = "budget",.ifbudget = true };
-TypeMoney bet = { .value = 10,.type = "bet",.ifbudget = false };
-Player dealer = { .name = "Dealer",.start_index = 0,.ifdealer = true };
-Player player = { .name = "Player",.start_index = 50,.ifdealer = false };
+TypeMoney budget = {.value = 100, .type = "budget", .ifbudget = true};
+TypeMoney bet = {.value = 10, .type = "bet", .ifbudget = false};
+Player dealer = {.name = "Dealer", .start_index = 0, .ifdealer = true };
+Player player = {.name = "Player", .start_index = 26, .ifdealer = false };
+
+
+Rectangle A = {.x = 10, .y = 170, .length = 210, .width = 40, .text = "+" };
+Rectangle B = {.x = 10, .y = 220, .length = 210, .width = 40, .text = "-"};
+Rectangle C = {.x = 10, .y = 270, .length = 210, .width = 40, .text = "ACCEPT" };
+Rectangle D = {.x = 10, .y = 200, .length = 70, .width = 100, .text = "Hit" };
+Rectangle E = {.x = 90, .y = 200, .length = 70, .width = 100, .text = "Double" };
+Rectangle F = {.x = 170, .y = 200, .length = 70, .width = 100, .text = "Stand"};
+
 
 TM_STMPE811_TouchData touchData;
 
 
 
+void Draw_Rectangle(Rectangle rect, uint32_t color){
+		TM_ILI9341_DrawFilledRectangle(rect.x, rect.y, rect.x+rect.length, rect.y+rect.width, color);
+		TM_ILI9341_Puts(rect.length/2, rect.y+rect.width/3, rect.text, &TM_Font_11x18, ILI9341_COLOR_BLACK, color);
+}
 
-
-void LCDInitialization() {
-	/* Initialize system */
+void LCDInitialization(){
+/* Initialize system */
 	SystemInit();
 
 	/* Initialize LCD */
@@ -38,7 +52,7 @@ void LCDInitialization() {
 	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
 
 	/* Fill with orange color */
-	//	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 
 	/* Initialize Touch */
 	if (TM_STMPE811_Init() != TM_STMPE811_State_Ok) {
@@ -56,12 +70,11 @@ void print_choose(void) {
 	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 	TM_ILI9341_Puts(10, 10, "Welcome in BlackJack", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 
-	TM_ILI9341_DrawFilledRectangle(10, 120, 220, 160, ILI9341_COLOR_ORANGE);
-	TM_ILI9341_Puts(100, 135, "+", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-	TM_ILI9341_DrawFilledRectangle(10, 170, 220, 210, ILI9341_COLOR_ORANGE);
-	TM_ILI9341_Puts(100, 185, "-", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-	TM_ILI9341_DrawFilledRectangle(10, 220, 220, 260, ILI9341_COLOR_ORANGE);
-	TM_ILI9341_Puts(70, 235, "ACCEPT", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	Draw_Rectangle(A, ILI9341_COLOR_ORANGE);
+	Draw_Rectangle(B, ILI9341_COLOR_ORANGE);
+	Draw_Rectangle(C, ILI9341_COLOR_ORANGE);
+
+
 }
 
 void change_money(TypeMoney* Money) {
@@ -71,17 +84,17 @@ void change_money(TypeMoney* Money) {
 		/* If touch pressed */
 		while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
 			/* Touch valid */
-			if (touchData.x >= 10 && touchData.x <= 220 && touchData.y >= 120 && touchData.y <= 160) {
+			if (touchData.x >= A.x && touchData.x <= A.x+A.length && touchData.y >= A.y && touchData.y <= A.y+A.width ){
 				Money->value += 10;
 				Delayms(200);
 				break;
 			}
-			else if (touchData.x >= 10 && touchData.x <= 220 && touchData.y >= 170 && touchData.y <= 210) {
+			else if (touchData.x >= B.x && touchData.x <= B.x+B.length && touchData.y >= B.y && touchData.y <= B.y+B.width ){
 				Money->value -= 10;
 				Delayms(200);
 				break;
 			}
-			else if (touchData.x >= 10 && touchData.x <= 220 && touchData.y >= 220 && touchData.y <= 260) {
+			else if (touchData.x >= C.x && touchData.x <= C.x+C.length && touchData.y >= C.y && touchData.y <= C.y+C.width ){
 				accept = false;
 				Delayms(200);
 				break;
@@ -98,17 +111,34 @@ void show_menu(void) {
 	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 	TM_ILI9341_Puts(70, 10, "MENU", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 
-	sprintf(stringa, "Your %s = %i ", budget.type, budget.value);
-	TM_ILI9341_Puts(20, 50, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-	sprintf(stringa, "Your %s = %i ", bet.type, bet.value);
-	TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	sprintf(stringa, "Your %s = %i ",budget.type,budget.value );
+		TM_ILI9341_Puts(20, 50, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	sprintf(stringa, "Your %s = %i ",bet.type,bet.value );
+		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 
-	TM_ILI9341_DrawFilledRectangle(10, 120, 220, 160, ILI9341_COLOR_YELLOW);
-	TM_ILI9341_Puts(70, 135, "New game", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_YELLOW);
-	TM_ILI9341_DrawFilledRectangle(10, 170, 220, 210, ILI9341_COLOR_YELLOW);
-	TM_ILI9341_Puts(70, 185, "Change bet", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_YELLOW);
-	TM_ILI9341_DrawFilledRectangle(10, 220, 220, 260, ILI9341_COLOR_YELLOW);
-	TM_ILI9341_Puts(70, 235, "Resign", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_YELLOW);
+	TM_ILI9341_DrawFilledRectangle(A.x, A.y, A.x+A.length, A.y+A.width, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Puts(A.length/2, A.y+A.width/3, "New game", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_YELLOW);
+	TM_ILI9341_DrawFilledRectangle(B.x, B.y, B.x+B.length, B.y+B.width, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Puts(B.length/2, B.y+B.width/3, "Change bet", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_YELLOW);
+	TM_ILI9341_DrawFilledRectangle(C.x, C.y, C.x+C.length, C.y+C.width, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Puts(C.length/2, C.y+C.width/3, "Resign", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_YELLOW);
+}
+
+void show_new_game(void){
+	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+	sprintf(stringa, "Your %s = %i ",budget.type,budget.value );
+		TM_ILI9341_Puts(20, 40, stringa, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	sprintf(stringa, "Your %s = %i ",bet.type,bet.value );
+		TM_ILI9341_Puts(20, 55, stringa, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+
+	TM_ILI9341_DrawFilledRectangle(D.x, D.y, D.x+D.length, D.y+D.width, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Puts(D.length/2, D.y+D.width/3, "Add", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_DrawFilledRectangle(E.x, E.y, E.x+E.length, E.y+E.width, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Puts(E.x +E.length/4, E.y+E.width/3, "Double", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_DrawFilledRectangle(F.x, F.y, F.x+F.length, F.y+F.width, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Puts(F.x + F.length/4, F.y+F.width/3, "Resign", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+
+
 }
 
 void change_menu(void) {
@@ -119,17 +149,17 @@ void change_menu(void) {
 		while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
 			/* Touch valid */
 
-			if (touchData.x >= 10 && touchData.x <= 220 && touchData.y >= 120 && touchData.y <= 160) {
+			if (touchData.x >= A.x && touchData.x <= A.x+A.length && touchData.y >= A.y && touchData.y <= A.y+A.width){
 				game = true;
 				accept = false;
 				break;
 			}
-			else if (touchData.x >= 10 && touchData.x <= 220 && touchData.y >= 170 && touchData.y <= 210) {
+			else if (touchData.x >= B.x && touchData.x <= B.x+B.length && touchData.y >= B.y && touchData.y <= B.y+B.width ){
 				betchange = true;
 				accept = false;
 				break;
 			}
-			else if (touchData.x >= 10 && touchData.x <= 220 && touchData.y >= 220 && touchData.y <= 260) {
+			else if (touchData.x >= C.x && touchData.x <= C.x+C.length && touchData.y >= C.y && touchData.y <= C.y+C.width ){
 				resign = true;
 				accept = false;
 				break;
@@ -178,39 +208,78 @@ void cards_randomize(void) {
 
 
 int StringToPoint(int index) {
-	switch (cards[index]) {
-	case 50: return 2; break;
-	case 51: return 3; break;
-	case 52: return 4; break;
-	case 53: return 5; break;
-	case 54: return 6; break;
-	case 55: return 7; break;
-	case 56: return 8; break;
-	case 57: return 9; break;
-	case 49: return 10; break;
-	case 74: return 10; break;
-	case 81: return 10; break;
-	case 75: return 10; break;
-	case 65: return 11; break;
-	}
-}
-
-
-
-void ShowCards(Player P) {
-	if (P.ifdealer == true) {
-
-	}
-
-	else {
-	}
+		if (cards [index] == 'A'){
+		return 11;}
+		else if (cards [index] == '2'){
+		return 2;}
+		else if (cards [index] == '3'){
+		return 3;}
+		else if (cards [index] == '4'){
+		return 4;}
+		else if (cards [index] == '5'){
+		return 5;}
+		else if (cards [index] == '6'){
+		return 6;}
+		else if (cards [index] == '7'){
+		return 7;}
+		else if (cards [index] == '8'){
+		return 8;}
+		else if (cards [index] == '9'){
+		return 9;}
+		else if (cards [index] == 'K'|| cards [index] == 'Q' || cards [index] == 'J' || cards [index] == '1'){
+		return 10;}
+		else {
+		return 0;}
 
 }
 
-void PlayCards(TypeMoney BUdget, TypeMoney Bet) {
 
 
+void ShowCards(Player P, int iterator){
+	char cards_of_player [10] = "";
+	char cards_of_dealer [10] = "";
+	int player_points = 0;
+	int dealer_points = 0;
+	int x = 80;
+	char string1[10];
+	char string2[10];
 
 
+	if (P.ifdealer == true){
+			for (int i = P.start_index; i<= iterator; i++){
+					cards_of_dealer [i] = cards [i];
+					dealer_points +=StringToPoint(i);
+			}
+			sprintf(string1, "%s cards: %s ",P.name, cards_of_dealer);
+			TM_ILI9341_Puts(20, x, string1, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+			sprintf(string2, "%s points: %i ",P.name, dealer_points);
+			TM_ILI9341_Puts(20, x+20, string2, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 
+		}
+		else {
+			x+=40;
+			for (int i = P.start_index; i<= iterator; i++){
+					cards_of_player [i-P.start_index] = cards [i];
+					player_points +=StringToPoint(i);
+			}
+			sprintf(string1, "%s cards: %s ",P.name, cards_of_player);
+			TM_ILI9341_Puts(20, x, string1, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+			sprintf(string2, "%s points: %i ",P.name, player_points);
+			TM_ILI9341_Puts(20, x+20, string2, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+		}
+}
+
+void PlayCards(TypeMoney* A, TypeMoney* B){
+			TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+			int a = dealer.start_index;
+			int b = player.start_index;
+			for (int i = 0; i<10; i++){Cards_Randomize();}
+			while (1){
+			show_new_game();
+			ShowCards(dealer, a);
+			ShowCards(player, b);
+
+				Delayms(5000);
+				//a++;
+			}
 }

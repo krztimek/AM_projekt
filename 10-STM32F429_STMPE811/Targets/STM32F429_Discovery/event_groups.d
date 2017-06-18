@@ -1,0 +1,15 @@
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\event_groups.c
+.\targets\stm32f429_discovery\event_groups.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\FreeRTOS.h
+.\targets\stm32f429_discovery\event_groups.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\targets\stm32f429_discovery\event_groups.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\targets\stm32f429_discovery\event_groups.o: .\User\FreeRTOSConfig.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\projdefs.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\portable.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\deprecated_definitions.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\portable\RVDS\ARM_CM4F\portmacro.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\mpu_wrappers.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\task.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\list.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\timers.h
+.\targets\stm32f429_discovery\event_groups.o: ..\FreeRTOS\Source\include\event_groups.h

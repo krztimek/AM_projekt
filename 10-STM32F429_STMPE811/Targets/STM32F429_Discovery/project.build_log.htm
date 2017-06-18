@@ -5,10 +5,10 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.21.1.0
 Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Krzysztof Timek, AGH, LIC=----
+License Information: Krzysztof Timek, AGH, LIC=21ERA-1DW3W-U4VS7-EFY4S-PP11B-ZNZEK
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.21a
+Toolchain:       MDK-ARM Plus  Version: 5.21a
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 3 (build 300)
 Assembler:       Armasm.exe V5.06 update 3 (build 300)
@@ -21,71 +21,36 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
 Dialog DLL:      TCM.DLL V1.14.14.0
  
 <h2>Project:</h2>
-C:\Users\Krzysztof\Documents\Studia\VI semestr\am\AM_Rzeczy\PROJEKT_KALKULATOR\10-STM32F429_STMPE811\project.uvprojx
-Project File Date:  06/10/2017
+C:\Users\Krzysztof\Documents\Studia\VI semestr\am\AM_Rzeczy\PROJEKT_BLACKJACK\10-STM32F429_STMPE811\project.uvprojx
+Project File Date:  06/17/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 3 (build 300)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F429-Discovery'
 assembling startup_stm32f429_439xx.s...
 compiling menu.c...
-User\menu.c(17): error:  #144: a value of type "char *" cannot be used to initialize an entity of type "char"
-  Player Dealer = {.name = "Dealer", .start_index = 0, .ifdealer = 
-rue, .cardset = "/0/0/0/0/0/0/0/0/0/0"};
-User\menu.c(18): error:  #101: "Player" has already been declared in the current scope
-  Player Player = {.name = "Dealer", .start_index = 50, .ifdealer = false, .cardset = "/0/0/0/0/0/0/0/0/0/0"};
-User\menu.c(18): error:  #144: a value of type "char *" cannot be used to initialize an entity of type "char"
-  Player Player = {.name = "Dealer", .start_index = 50, .ifdealer = 
-alse, .cardset = "/0/0/0/0/0/0/0/0/0/0"};
-User\menu.c(170): error:  #142: expression must have pointer-to-object type
-  	Dealer.cardset[0] = cards [0];
-User\menu.c(171): error:  #142: expression must have pointer-to-object type
-  	Dealer.cardset[1] = '/0';
-User\menu.c(171): warning:  #2548-D: multicharacter character literal (potential portability problem)
-  	Dealer.cardset[1] = '/0';
-User\menu.c(178): warning:  #111-D: statement is unreachable
-  	case 50: return 2; break;
-User\menu.c(179): warning:  #111-D: statement is unreachable
-  	case 51: return 3; break;
-User\menu.c(180): warning:  #111-D: statement is unreachable
-  	case 52: return 4; break;
-User\menu.c(181): warning:  #111-D: statement is unreachable
-  	case 53: return 5; break; 
-User\menu.c(182): warning:  #111-D: statement is unreachable
-  	case 54: return 6; break;
-User\menu.c(183): warning:  #111-D: statement is unreachable
-  	case 55: return 7; break;
-User\menu.c(184): warning:  #111-D: statement is unreachable
-  	case 56: return 8; break;
-User\menu.c(185): warning:  #111-D: statement is unreachable
-  	case 57: return 9; break;
-User\menu.c(186): warning:  #111-D: statement is unreachable
-  	case 49: return 10; break;
-User\menu.c(187): warning:  #111-D: statement is unreachable
-  	case 74: return 10; break;
-User\menu.c(188): warning:  #111-D: statement is unreachable
-  	case 81: return 10; break;
-User\menu.c(189): warning:  #111-D: statement is unreachable
-  	case 75: return 10; break;
-User\menu.c(190): warning:  #111-D: statement is unreachable
-  	case 65: return 11; break;
-User\menu.c(192): warning:  #940-D: missing return statement at end of non-void function "StringToPoint"
-  }
-User\menu.c(196): error:  #757: variable "Player" is not a type name
-  void ShowCards(Player player){
-User\menu.c(203): error:  #127: expected a statement
-  }
-User\menu.c: 15 warnings, 7 errors
-compiling main.c...
-".\Targets\STM32F429_Discovery\project.axf" - 7 Error(s), 15 Warning(s).
+linking...
+Program Size: Code=17118 RO-data=5802 RW-data=476 ZI-data=1772  
+FromELF: creating hex file...
+".\Targets\STM32F429_Discovery\project.axf" - 0 Error(s), 0 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.0.1.pack
+                ARM::CMSIS:CORE:5.0.1
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.0.1
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\Krzysztof\Documents\Studia\VI semestr\am\AM_Rzeczy\PROJEKT_KALKULATOR\10-STM32F429_STMPE811\RTE
+  C:\Users\Krzysztof\Documents\Studia\VI semestr\am\AM_Rzeczy\PROJEKT_BLACKJACK\10-STM32F429_STMPE811\RTE
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.11.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
-Build Time Elapsed:  00:00:03
+
+   * Component: ARM::CMSIS:CORE:5.0.1
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
