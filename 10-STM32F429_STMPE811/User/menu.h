@@ -24,7 +24,8 @@ bool ifdealer;
 char cardset[10]; 
 } Player;
 
-void Cards_Randomize(void);
+uint8_t rand_function(void);
+void cards_randomize(void);
 
 int StringToPoint(int index);
 void ShowCards( Player player);
