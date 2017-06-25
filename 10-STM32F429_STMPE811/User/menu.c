@@ -1,6 +1,5 @@
 #include "menu.h"
 
-
 bool accept = true;
 
 bool option1 = false;
@@ -38,8 +37,6 @@ Rectangle F = {.x = 170, .y = 200, .length = 70, .width = 100, .text = "Stand"};
 TM_STMPE811_TouchData touchData;
 
 
-
-
 void Draw_Rectangle(Rectangle rect, TM_FontDef_t *font, uint32_t color){
 		TM_ILI9341_DrawFilledRectangle(rect.x, rect.y, rect.x+rect.length, rect.y+rect.width, color);
 		int a = strlen(rect.text);
@@ -47,6 +44,7 @@ void Draw_Rectangle(Rectangle rect, TM_FontDef_t *font, uint32_t color){
 		int y = rect.y + rect.width/2 - (font->FontHeight/2);
 		TM_ILI9341_Puts(x, y, rect.text, font , ILI9341_COLOR_BLACK, color);
 }
+
 
 void LCDInitialization(){
 	/* Initialize system */
@@ -67,14 +65,13 @@ void LCDInitialization(){
 	/* Initialize Touch */
 		if (TM_STMPE811_Init() != TM_STMPE811_State_Ok) {
 			TM_ILI9341_Puts(20, 20, "STMPE811 Error", &TM_Font_11x18, ILI9341_COLOR_ORANGE, ILI9341_COLOR_BLACK);
-
 			while (1);
 		}
 
 	/* Select touch screen orientation */
 		touchData.orientation = TM_STMPE811_Orientation_Portrait_2;
-
 }
+
 
 void show_menu(void) {
 		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
@@ -86,12 +83,11 @@ void show_menu(void) {
 		sprintf(stringa, "Your %s = %i ",bet.type,bet.value );
 		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 
-
 		Draw_Rectangle(A2, &TM_Font_11x18, ILI9341_COLOR_ORANGE);
 		Draw_Rectangle(B2, &TM_Font_11x18, ILI9341_COLOR_ORANGE);
 		Draw_Rectangle(C2, &TM_Font_11x18,ILI9341_COLOR_ORANGE);
-
 }
+
 
 void show_new_game(void){
 		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
@@ -100,26 +96,20 @@ void show_new_game(void){
 		sprintf(stringa, "Your %s = %i ",bet.type,bet.value );
 		TM_ILI9341_Puts(20, 55, stringa, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 
-
 		Draw_Rectangle(D, &TM_Font_7x10, ILI9341_COLOR_ORANGE);
 		Draw_Rectangle(E, &TM_Font_7x10, ILI9341_COLOR_ORANGE);
 		Draw_Rectangle(F, &TM_Font_7x10,ILI9341_COLOR_ORANGE);
 
-
 		Delayms(50);
 }
 
+
 void change_menu(void) {
-
-
 	while (accept) {
-
 		while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
 			/* Touch valid */
-
 			if (touchData.x >= A2.x && touchData.x <= A2.x+A2.length && touchData.y >= A2.y && touchData.y <= A2.y+A2.width){
 				option1 = true;
-
 				accept = false;
 				break;
 			}
@@ -133,17 +123,17 @@ void change_menu(void) {
 				accept = false;
 				break;
 			}
-			else {
-				;
-			}
 		}
 	}
+	
 	accept = true;
 }
+
 
 uint8_t rand_function() {
 	return tick_from_systick;
 }
+
 
 void cards_randomize(void) {
 	for (uint8_t i = 0; i < cardsSetSize; i++) {
@@ -220,61 +210,60 @@ void show_cards(Player* P, int iterator){
 		Delayms(50);
 }
 
-int read_touch(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
-		while(1){
 
-				while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
+int read_touch(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
+		while(1){//wait for touch
+			while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed){
 				/* Touch valid */
 				Delayms(50);
 				if (touchData.x >= D.x && touchData.x <= D.x+D.length && touchData.y >= D.y && touchData.y <= D.y+D.width){ //Wybrana opcja "Hit"
-						return 1;
-
+					return 1;
 				}
 				else if (touchData.x >= E.x && touchData.x <= E.x+E.length && touchData.y >= E.y && touchData.y <= E.y+E.width ){ //Wybrana opcja "Double"
-						if (moneyToSpend->value > moneyToBet->value*2) {
-								moneyToBet -> value = moneyToBet->value*2;
-								exitflag = true;
-								return 1;
-						}
-						else {
-								moneyToBet -> value = moneyToSpend->value;
-								exitflag = true;
-								return 1;
-						}
+					if (moneyToSpend->value > moneyToBet->value*2){
+						moneyToBet -> value = moneyToBet->value*2;
+						exitflag = true;
+						return 1;
+					}
+					else{
+						moneyToBet -> value = moneyToSpend->value;
+						exitflag = true;
+						return 1;
+					}
 				}
 				else if (touchData.x >= F.x && touchData.x <= F.x+F.length && touchData.y >= F.y && touchData.y <= F.y+F.width ){ //Wybrana opcja "Stand"
 						exitflag = true;
 						return 0;
 				}
-				else {
-				;}
-				}
+			}
 		}
 }
-bool dealer_play(void){
-		int dealerIndicator = dealer.start_index +1;
-		while (1) {
-				show_cards(&dealer, dealerIndicator);
-				if ((dealer.points <= 21)&&(dealer.points > player.points)) {
-						return true; 	}
-				else if (dealer.points > 21){
-						return false; }
-				else {
-						dealerIndicator++;}
-				Delayms(2000);
-		}
 
+
+bool dealer_play(void){
+	int dealerIndicator = dealer.start_index +1;
+	while (1){
+		show_cards(&dealer, dealerIndicator);
+		if ((dealer.points <= 21)&&(dealer.points > player.points)){
+			return true;
+		}
+		else if (dealer.points > 21){
+			return false;
+		}
+		else{
+			dealerIndicator++;}
+		Delayms(2000);
+		}
 }
 
 void display_win(Player P){
-		char string1[10];
-		if (P.ifdealer == true){
-				sprintf(string1, "YOU LOST!");}
-		else {
-				sprintf(string1, "YOU WON!");}
-
-		TM_ILI9341_Puts(90, 175, string1, &TM_Font_11x18, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
-
+	char string1[10];
+	if(P.ifdealer == true){
+		sprintf(string1, "YOU LOST!");}
+	else{
+		sprintf(string1, "YOU WON!");
+	}
+	TM_ILI9341_Puts(90, 175, string1, &TM_Font_11x18, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
 }
 
 void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
@@ -301,8 +290,8 @@ void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 			}
 
 			if (exitflag == true){
-				bool winner = dealer_play();
-				if (winner == true){
+				bool dealerWins = dealer_play();
+				if (dealerWins == true){
 					display_win(dealer);
 					moneyToSpend->value -= moneyToBet->value;
 				}

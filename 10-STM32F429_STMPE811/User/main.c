@@ -28,8 +28,6 @@
 //#include <stdbool.h>
 //#include "LCD.h"
 
-
-
 extern TypeMoney budget;
 extern TypeMoney bet;
 extern bool game;
@@ -53,22 +51,19 @@ int main(void) {
 	while(1) {
 		show_menu();
 		change_menu();
+
 		if (game == true){
 		  play_cards(&budget, &bet);
 			game = false;
 		}
-		else if(betchange == true) {
-
+		else if(betchange == true){
 			print_choose();
 			change_money(&bet);
 			betchange = false;
-
 		}
 		else if (resign == true){
 			exit_game();
 		}
-		else {
-			;}
 	}
 
 }
