@@ -278,49 +278,50 @@ void display_win(Player P){
 }
 
 void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
-		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
-		int dealerIndicator = dealer.start_index;
-		int playerIndicator = player.start_index + 1;
-		cards_randomize();
-				while ((moneyToSpend > 0) && (moneyToSpend > moneyToBet)){
-						show_new_game();
+	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+	int dealerIndicator = dealer.start_index;
+	int playerIndicator = player.start_index + 1;
+	cards_randomize();
+		while (1){
+			show_new_game();
 
-						show_cards(&dealer, dealerIndicator);
-						show_cards(&player, playerIndicator);
-						if (player.points == 21) {
-								display_win(player);
-								moneyToSpend->value += moneyToBet->value;
-								Delayms(2000);
-								break;
-						}
-						else if (player.points > 21){
-								display_win(dealer);
-								moneyToSpend->value -= moneyToBet->value;
-								Delayms(2000);
-								break;
-						}
+			show_cards(&dealer, dealerIndicator);
+			show_cards(&player, playerIndicator);
+			if (player.points == 21) {
+					display_win(player);
+					moneyToSpend->value += moneyToBet->value;
+					Delayms(2000);
+					break;
+			}
+			else if (player.points > 21){
+					display_win(dealer);
+					moneyToSpend->value -= moneyToBet->value;
+					Delayms(2000);
+					break;
+			}
 
-						if (exitflag == true){
-								bool winner = dealer_play();
-								if (winner == true) {
-										display_win(dealer);
-										moneyToSpend->value -= moneyToBet->value;}
-
-								else {
-										display_win(player);
-										moneyToSpend->value += moneyToBet->value;}
-
-								exitflag = false;
-								Delayms(2000);
-								break;
-						}
-
-				playerIndicator += read_touch(moneyToSpend, moneyToBet);
-
-				//Delayms(300);
-
-				//a++;
+			if (exitflag == true){
+				bool winner = dealer_play();
+				if (winner == true){
+					display_win(dealer);
+					moneyToSpend->value -= moneyToBet->value;
 				}
+				else{
+					display_win(player);
+					moneyToSpend->value += moneyToBet->value;
+				}
+
+				exitflag = false;
+				Delayms(2000);
+				break;
+			}
+
+			playerIndicator += read_touch(moneyToSpend, moneyToBet);
+
+		//Delayms(300);
+
+		//a++;
+		}
 }
 
 void print_choose(void) {
@@ -374,16 +375,17 @@ void change_money(TypeMoney* Money) {
 	accept = true;
 }
 
-void exit_game(void) {
+void exit_game(void){
+	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+	if (budget.value >= start_value){
+		sprintf(stringa, "You won: %i ", budget.value - start_value);
+	}
+	else{
+		sprintf(stringa, "You lost: %i ", budget.value - start_value);
+	}
 
-		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
-		if (budget.value >= start_value) {
-				sprintf(stringa, "You won: %i ", budget.value - start_value);}
-		else {
-				sprintf(stringa, "You lost: %i ", budget.value - start_value);}
+	TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE);
+	TM_ILI9341_Puts(50, 110, "Thank you!", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 
-		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE);
-		TM_ILI9341_Puts(50, 110, "Thank you!", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-
-		while (1);
+	while (1);
 }
