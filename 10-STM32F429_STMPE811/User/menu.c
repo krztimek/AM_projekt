@@ -281,7 +281,7 @@ void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 		int dealerIndicator = dealer.start_index;
 		int playerIndicator = player.start_index + 1;
-		for (int i = 0; i<10; i++){cards_randomize();}
+		cards_randomize();
 				while (1){
 						show_new_game();
 
@@ -341,16 +341,27 @@ void change_money(TypeMoney* Money) {
 	  while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
 			/* Touch valid */
 			if (touchData.x >= A1.x && touchData.x <= A1.x+A1.length && touchData.y >= A1.y && touchData.y <= A1.y+A1.width ){
+				if(Money->ifbudget == false){//bet maximum is budget
+					if(bet->value < budget->value){
+						Money->value += 10;
+					}
+					else{
+						sprintf(string1, "Not engouh money!");}
+						TM_ILI9341_Puts(90, 100, string1, &TM_Font_11x18, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);//not engouh money
+					}
+				}
+				else{
 					Money->value += 10;
+				}
 					Delayms(200);
 					break;
 			}
-			else if (touchData.x >= B1.x && touchData.x <= B1.x+B1.length && touchData.y >= B1.y && touchData.y <= B1.y+B1.width ){
+			else if (touchData.x >= B1.x && touchData.x <= B1.x + B1.length && touchData.y >= B1.y && touchData.y <= B1.y + B1.width ){
 					Money->value -= 10;
 					Delayms(200);
 					break;
 			}
-			else if (touchData.x >= C1.x && touchData.x <= C1.x+C1.length && touchData.y >= C1.y && touchData.y <= C1.y+C1.width ){
+			else if (touchData.x >= C1.x && touchData.x <= C1.x + C1.length && touchData.y >= C1.y && touchData.y <= C1.y + C1.width ){
 					accept = false;
 					Delayms(200);
 					break;
