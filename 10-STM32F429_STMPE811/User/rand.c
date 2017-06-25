@@ -1,5 +1,6 @@
 #include "rand.h"
 
+
 uint8_t rand_function() {
 	return tick_from_systick;
 }

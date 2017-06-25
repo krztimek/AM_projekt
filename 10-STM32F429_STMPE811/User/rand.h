@@ -1,6 +1,9 @@
 #ifndef RAND_H
 #define RAND_H
 
+#include "data.h"
+#include "global_data.h"
+
 /*
 function that rerurn rand number
 */

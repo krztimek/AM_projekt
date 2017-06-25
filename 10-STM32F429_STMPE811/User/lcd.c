@@ -1,3 +1,9 @@
+#include "lcd.h"
+
+extern Rectangle D;
+extern Rectangle E;
+extern Rectangle F;
+
 void LCDInitialization(){
 /* Initialize system */
 	SystemInit();

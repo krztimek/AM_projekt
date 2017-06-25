@@ -1,6 +1,8 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
+#include "data.h"
+
 void CORE_EnterCriticalSection(void);
 
 void CORE_ExitCriticalSection(void);

@@ -1,5 +1,8 @@
 #ifndef LCD_H
 #define LCD_H
+
+#include "data.h"
+
 /*
 LCDInitialization - Inicjalizacja wyswietlacza LCD
 */

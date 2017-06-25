@@ -1,3 +1,5 @@
+#include "data.h"
+
 bool accept = true;
 
 bool option1 = false;
