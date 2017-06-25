@@ -32,7 +32,7 @@ char text[10];
 } Rectangle;
 
 /*
-Funkcja Cards_Randomize - tasowanie kart
+Funkcja cards_randomize - tasowanie kart
 */
 uint8_t rand_function(void);
 void cards_randomize(void);
@@ -75,12 +75,12 @@ Funkcja posiadajaca mechanizm umozliwiajacy zmiany wartosci struktury TypeMoney 
 void change_money(TypeMoney* Money);
 
 /*
-Funkcja wypisujaca glówne menu gry (new game, change bet i resign)
+Funkcja wypisujaca glï¿½wne menu gry (new game, change bet i resign)
 */
 void show_menu(void);
 
 /*
-Funkcja pozwalajaca za pomoca odpowiedniej zmiennej wejsc w dany etap menu. 
+Funkcja pozwalajaca za pomoca odpowiedniej zmiennej wejsc w dany etap menu.
 */
 void change_menu(void);
 
@@ -90,11 +90,11 @@ Funkcja wypisujaca komunikat po wejsciu w "Resign"
 void exit_game(void);
 
 /*
-Funkcja pozwalajaca odczytac dane z orzycisnietych elementów w czasie gry i wybór zmian w kartach spowodowanych odpowiednim nacisnieciem. 
+Funkcja pozwalajaca odczytac dane z orzycisnietych elementï¿½w w czasie gry i wybï¿½r zmian w kartach spowodowanych odpowiednim nacisnieciem.
 */
 int read_touch(TypeMoney* moneyToSpend, TypeMoney* moneyToBet);
 
-/* 
+/*
 Wyswietlanie wiadomosci o zwyciezcy
 */
 void displayWin(Player P);
@@ -104,6 +104,6 @@ void displayWin(Player P);
 Samodzielna gra dealera
 */
 bool DealerPlay(void);
-	
+
 
 #endif
