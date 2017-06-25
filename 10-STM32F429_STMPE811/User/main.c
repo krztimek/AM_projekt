@@ -25,17 +25,14 @@
 #include "tm_stm32f4_stmpe811.h"
 #include <stdio.h>
 #include "core.h"
-//#include <stdbool.h>
-//#include "LCD.h"
+#include "lcd.h"
 
 extern TypeMoney budget;
 extern TypeMoney bet;
 extern bool game;
 extern bool betchange;
 extern bool resign;
-
 extern int ticks;
-
 
 void SystickHandler(void){
 	ticks++;
