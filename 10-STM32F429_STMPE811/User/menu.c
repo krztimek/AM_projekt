@@ -181,25 +181,8 @@ void change_menu(void) {
 	accept = true;
 }
 
-void exit_game(void) {
-
-		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
-		if (budget.value >= start_value) {
-				sprintf(stringa, "You won: %i ", budget.value - start_value);}
-		else {
-				sprintf(stringa, "You lost: %i ", budget.value - start_value);}
-
-		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE);
-		TM_ILI9341_Puts(50, 110, "Thank you!", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-
-		while (1);
-}
-
-
-
-
-uint8_t rand_function() {//TBD
-	return 10;
+uint8_t rand_function() {
+	return tick_from_systick;
 }
 
 void cards_randomize(void) {
@@ -320,7 +303,7 @@ bool dealer_play(void){
 						return false; }
 				else {
 						dealerIndicator++;}
-				Delayms(500);
+				Delayms(2000);
 		}
 
 }
@@ -380,4 +363,18 @@ void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 
 				//a++;
 				}
+}
+
+void exit_game(void) {
+
+		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+		if (budget.value >= start_value) {
+				sprintf(stringa, "You won: %i ", budget.value - start_value);}
+		else {
+				sprintf(stringa, "You lost: %i ", budget.value - start_value);}
+
+		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE);
+		TM_ILI9341_Puts(50, 110, "Thank you!", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+
+		while (1);
 }
