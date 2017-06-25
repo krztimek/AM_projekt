@@ -40,18 +40,18 @@ void cards_randomize(void);
 /*
 Funkcja StringToPoint - zamiana karry na przypisana do niej ilosc punkt�w
 */
-int StringToPoint(int index);
+int string_to_point(int index);
 
 /*
-ShowCards - Funkcja wypisujaca na ekran karty i ilosc punkt�w danego uzytkownika
+show_cards - Funkcja wypisujaca na ekran karty i ilosc punkt�w danego uzytkownika
 Player P - zawodnik lub dealer
 iterator - ilosc kart, kt�re nalezy wypisac
 */
-void ShowCards(Player* P, int iterator);
+void show_cards(Player* P, int iterator);
 /*
-PlayCards - Funkcja w kt�rej okreslona jest cala funkcjonalnosc gry
+play_cards - Funkcja w kt�rej okreslona jest cala funkcjonalnosc gry
 */
-void PlayCards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet);
+void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet);
 
 /*
 Draw_Rectangle - Funkcja rysujaca prostokat o okreslonym ksztalcie
@@ -97,13 +97,13 @@ int read_touch(TypeMoney* moneyToSpend, TypeMoney* moneyToBet);
 /*
 Wyswietlanie wiadomosci o zwyciezcy
 */
-void displayWin(Player P);
+void display_win(Player P);
 
 
 /*
 Samodzielna gra dealera
 */
-bool DealerPlay(void);
+bool dealer_play(void);
 
 
 #endif

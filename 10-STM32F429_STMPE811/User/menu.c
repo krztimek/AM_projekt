@@ -215,7 +215,7 @@ void cards_randomize(void) {
 }
 
 
-int StringToPoint(int index) {
+int string_to_point(int index) {
 		switch ((char)cards[index]) {
 				case 50: return 2; break;
 				case 51: return 3; break;
@@ -236,7 +236,7 @@ int StringToPoint(int index) {
 }
 
 
-void ShowCards(Player* P, int iterator){
+void show_cards(Player* P, int iterator){
 		char cards_of_player [10] = "";
 		//char cards_of_dealer [10] = "";
 		//int player_points = 0;
@@ -258,7 +258,7 @@ void ShowCards(Player* P, int iterator){
 				if (cards [i] == 'A'){
 							aces +=1;
 				}
-				P->points +=StringToPoint(i);
+				P->points += string_to_point(i);
 
 		}
 		if ((P->points > 21) && (aces != 0)){
@@ -310,10 +310,10 @@ int read_touch(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 		}
 
 }
-bool DealerPlay(void){
+bool dealer_play(void){
 		int dealerIndicator = dealer.start_index +1;
 		while (1) {
-				ShowCards(&dealer, dealerIndicator);
+				show_cards(&dealer, dealerIndicator);
 				if ((dealer.points <= 21)&&(dealer.points > player.points)) {
 						return true; 	}
 				else if (dealer.points > 21){
@@ -325,7 +325,7 @@ bool DealerPlay(void){
 
 }
 
-void displayWin(Player P){
+void display_win(Player P){
 		char string1[10];
 		if (P.ifdealer == true){
 				sprintf(string1, "YOU LOST!");}
@@ -336,7 +336,7 @@ void displayWin(Player P){
 
 }
 
-void PlayCards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
+void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 		int dealerIndicator = dealer.start_index;
 		int playerIndicator = player.start_index + 1;
@@ -344,29 +344,29 @@ void PlayCards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 				while (1){
 						show_new_game();
 
-						ShowCards(&dealer, dealerIndicator);
-						ShowCards(&player, playerIndicator);
+						show_cards(&dealer, dealerIndicator);
+						show_cards(&player, playerIndicator);
 						if (player.points == 21) {
-								displayWin(player);
+								display_win(player);
 								moneyToSpend->value += moneyToBet->value;
 								Delayms(2000);
 								break;
 						}
 						else if (player.points > 21){
-								displayWin(dealer);
+								display_win(dealer);
 								moneyToSpend->value -= moneyToBet->value;
 								Delayms(2000);
 								break;
 						}
 
 						if (exitflag == true){
-								bool winner = DealerPlay();
+								bool winner = dealer_play();
 								if (winner == true) {
-										displayWin(dealer);
+										display_win(dealer);
 										moneyToSpend->value -= moneyToBet->value;}
 
 								else {
-										displayWin(player);
+										display_win(player);
 										moneyToSpend->value += moneyToBet->value;}
 
 								exitflag = false;
