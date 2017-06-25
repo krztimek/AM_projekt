@@ -56,14 +56,13 @@ int main(void) {
 		  play_cards(&budget, &bet);
 			game = false;
 		}
-		else if(betchange == true){
+		if(betchange == true){
 			print_choose();
 			change_money(&bet);
 			betchange = false;
 		}
-		else if (resign == true){
+		if (resign == true){
 			exit_game();
 		}
 	}
-
 }
