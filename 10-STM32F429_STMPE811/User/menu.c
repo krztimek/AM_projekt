@@ -282,7 +282,7 @@ void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 		int dealerIndicator = dealer.start_index;
 		int playerIndicator = player.start_index + 1;
 		cards_randomize();
-				while (1){
+				while ((moneyToSpend > 0) && (moneyToSpend > moneyToBet)){
 						show_new_game();
 
 						show_cards(&dealer, dealerIndicator);
@@ -346,7 +346,7 @@ void change_money(TypeMoney* Money) {
 						Money->value += 10;
 					}
 					else{
-						sprintf(string1, "Not engouh money!");}
+						sprintf(string1, "Not engouh money!");
 						TM_ILI9341_Puts(90, 100, string1, &TM_Font_11x18, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);//not engouh money
 					}
 				}
