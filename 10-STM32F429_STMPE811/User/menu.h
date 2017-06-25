@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "cards.h"
 #include "core.h"
+#include "lcd.h"
 
 typedef struct {
 	int value;
@@ -31,79 +32,26 @@ uint8_t width;
 char text[10];
 } Rectangle;
 
-/*
-Funkcja cards_randomize - tasowanie kart
-*/
-uint8_t rand_function(void);
-void cards_randomize(void);
 
-/*
-Funkcja StringToPoint - zamiana karry na przypisana do niej ilosc punkt�w
-*/
-int string_to_point(int index);
 
-/*
-show_cards - Funkcja wypisujaca na ekran karty i ilosc punkt�w danego uzytkownika
-Player P - zawodnik lub dealer
-iterator - ilosc kart, kt�re nalezy wypisac
-*/
-void show_cards(Player* P, int iterator);
-/*
-play_cards - Funkcja w kt�rej okreslona jest cala funkcjonalnosc gry
-*/
-void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet);
 
-/*
-Draw_Rectangle - Funkcja rysujaca prostokat o okreslonym ksztalcie
-*/
-void Draw_Rectangle(Rectangle rect, TM_FontDef_t *font, uint32_t color);
-
-/*
-LCDInitialization - Inicjalizacja wyswietlacza LCD
-*/
-void LCDInitialization(void);
-
-/*
-Funkcja wypisujaca na ekran struktury A1, B1 i C1, pokazuje na ekranie okreslone napisy
-i przyciski w etapie wyboru wartosci budgetu i betu
-*/
-void print_choose(void);
 
 /*
 Funkcja posiadajaca mechanizm umozliwiajacy zmiany wartosci struktury TypeMoney podanej przez wskaznik (budget i bet)
 */
 void change_money(TypeMoney* Money);
 
-/*
-Funkcja wypisujaca gl�wne menu gry (new game, change bet i resign)
-*/
-void show_menu(void);
+
 
 /*
 Funkcja pozwalajaca za pomoca odpowiedniej zmiennej wejsc w dany etap menu.
 */
 void change_menu(void);
 
-/*
-Funkcja wypisujaca komunikat po wejsciu w "Resign"
-*/
-void exit_game(void);
-
-/*
-Funkcja pozwalajaca odczytac dane z orzycisnietych element�w w czasie gry i wyb�r zmian w kartach spowodowanych odpowiednim nacisnieciem.
-*/
-int read_touch(TypeMoney* moneyToSpend, TypeMoney* moneyToBet);
-
-/*
-Wyswietlanie wiadomosci o zwyciezcy
-*/
-void display_win(Player P);
 
 
-/*
-Samodzielna gra dealera
-*/
-bool dealer_play(void);
+
+
 
 
 #endif
