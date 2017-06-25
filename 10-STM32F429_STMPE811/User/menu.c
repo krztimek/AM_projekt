@@ -76,46 +76,6 @@ void LCDInitialization(){
 
 }
 
-void print_choose(void) {
-		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
-		TM_ILI9341_Puts(10, 10, "Welcome in BlackJack", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-
-		Draw_Rectangle(A1, &TM_Font_11x18, ILI9341_COLOR_ORANGE);
-		Draw_Rectangle(B1, &TM_Font_11x18, ILI9341_COLOR_ORANGE);
-		Draw_Rectangle(C1, &TM_Font_11x18,ILI9341_COLOR_ORANGE);
-
-}
-
-void change_money(TypeMoney* Money) {
-		while (accept) {
-				sprintf(stringa, "Your %s = %i ", Money->type, Money->value);
-				TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-		/* If touch pressed */
-		while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
-			/* Touch valid */
-
-				if (touchData.x >= A1.x && touchData.x <= A1.x+A1.length && touchData.y >= A1.y && touchData.y <= A1.y+A1.width ){
-						Money->value += 10;
-						Delayms(200);
-						break;}
-
-				else if (touchData.x >= B1.x && touchData.x <= B1.x+B1.length && touchData.y >= B1.y && touchData.y <= B1.y+B1.width ){
-						Money->value -= 10;
-						Delayms(200);
-						break;}
-
-				else if (touchData.x >= C1.x && touchData.x <= C1.x+C1.length && touchData.y >= C1.y && touchData.y <= C1.y+C1.width ){
-						accept = false;
-						Delayms(200);
-						break;}
-		}
-	}
-	if (Money->ifbudget == true) {
-			start_value = Money->value;}
-
-	accept = true;
-}
-
 void show_menu(void) {
 		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 		TM_ILI9341_Puts(70, 10, "MENU", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
@@ -289,9 +249,7 @@ int read_touch(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 				else {
 				;}
 				}
-
 		}
-
 }
 bool dealer_play(void){
 		int dealerIndicator = dealer.start_index +1;
@@ -363,6 +321,46 @@ void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 
 				//a++;
 				}
+}
+
+void print_choose(void) {
+		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+		TM_ILI9341_Puts(10, 10, "Welcome in BlackJack", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
+
+		Draw_Rectangle(A1, &TM_Font_11x18, ILI9341_COLOR_ORANGE);
+		Draw_Rectangle(B1, &TM_Font_11x18, ILI9341_COLOR_ORANGE);
+		Draw_Rectangle(C1, &TM_Font_11x18,ILI9341_COLOR_ORANGE);
+
+}
+
+void change_money(TypeMoney* Money) {
+	while (accept) {
+		sprintf(stringa, "Your %s = %i ", Money->type, Money->value);
+		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	  /* If touch pressed */
+	  while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
+			/* Touch valid */
+			if (touchData.x >= A1.x && touchData.x <= A1.x+A1.length && touchData.y >= A1.y && touchData.y <= A1.y+A1.width ){
+					Money->value += 10;
+					Delayms(200);
+					break;
+			}
+			else if (touchData.x >= B1.x && touchData.x <= B1.x+B1.length && touchData.y >= B1.y && touchData.y <= B1.y+B1.width ){
+					Money->value -= 10;
+					Delayms(200);
+					break;
+			}
+			else if (touchData.x >= C1.x && touchData.x <= C1.x+C1.length && touchData.y >= C1.y && touchData.y <= C1.y+C1.width ){
+					accept = false;
+					Delayms(200);
+					break;
+			}
+		}
+	}
+	if (Money->ifbudget == true) {
+			start_value = Money->value;
+	}
+	accept = true;
 }
 
 void exit_game(void) {
