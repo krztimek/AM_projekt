@@ -18,22 +18,22 @@ void change_money(TypeMoney* Money) {
 			/* Touch valid */
 			if (touchData.x >= A1.x && touchData.x <= A1.x+A1.length && touchData.y >= A1.y && touchData.y <= A1.y+A1.width ){
 				if(Money->ifbudget == false){//bet maximum is budget
-					if(bet->value < budget->value){
+					if(bet.value < budget.value){
 						Money->value += 10;
 					}
 					else{
-						sprintf(string1, "Not engouh money!");
-						TM_ILI9341_Puts(90, 100, string1, &TM_Font_11x18, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);//not engouh money
+						sprintf(stringa, "Not engouh money!");
+						TM_ILI9341_Puts(20, 100, stringa, &TM_Font_11x18, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);//not engouh money
 					}
 				}
 				else{
-					Money->value += 10;
+					Money->value += 20;
 				}
 					Delayms(200);
 					break;
 			}
 			else if (touchData.x >= B1.x && touchData.x <= B1.x + B1.length && touchData.y >= B1.y && touchData.y <= B1.y + B1.width ){
-					Money->value -= 10;
+					Money->value -= 15;
 					Delayms(200);
 					break;
 			}

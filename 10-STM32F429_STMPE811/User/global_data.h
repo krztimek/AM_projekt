@@ -1,6 +1,13 @@
 #ifndef GLOBAL_DATA_H
 #define GLOBAL_DATA_H
 
+#include "stdint.h"
+#include "stdbool.h"
+#include "tm_stm32f4_stmpe811.h"
+#include "tm_stm32f4_ili9341.h"
+#include "tm_stm32f4_delay.h"
+#include "data.h"
+
 extern bool accept;
 
 extern bool option1;
@@ -9,10 +16,12 @@ extern bool option3;
 
 extern bool exitflag;
 
+extern int ticks;
+
 extern uint16_t start_value;
-extern const uint8_t cardsSetSize;
-extern char cardsSet[cardsSetSize + 1];//set of available cards, +1 because of '/0' at end
-extern char cards[cardsSetSize];// here will be put random cards from cardsSet (function cards_randomize)
+extern uint8_t cardsSetSize;
+extern char cardsSet[52 + 1];//set of available cards, +1 because of '/0' at end
+extern char cards[52];// here will be put random cards from cardsSet (function cards_randomize)
 
 extern char stringa[30];
 

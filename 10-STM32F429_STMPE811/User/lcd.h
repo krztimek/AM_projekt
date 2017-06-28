@@ -2,7 +2,7 @@
 #define LCD_H
 
 #include "data.h"
-
+#include "global_data.h"
 /*
 LCDInitialization - Inicjalizacja wyswietlacza LCD
 */

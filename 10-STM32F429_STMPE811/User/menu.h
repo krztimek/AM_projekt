@@ -6,10 +6,10 @@
 #include "tm_stm32f4_stmpe811.h"
 #include <stdbool.h>
 #include <stdio.h>
-#include "cards.h"
 #include "core.h"
 #include "lcd.h"
 #include "data.h"
+#include "global_data.h"
 
 /*
 Funkcja wypisujaca na ekran struktury A1, B1 i C1, pokazuje na ekranie okreslone napisy

@@ -2,6 +2,7 @@
 #define _CORE_H_
 
 #include "data.h"
+#include "global_data.h"
 
 void CORE_EnterCriticalSection(void);
 

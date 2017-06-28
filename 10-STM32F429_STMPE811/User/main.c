@@ -19,19 +19,17 @@
 /* Include my libraries here */
 #include "defines.h"
 #include "menu.h"
-#include "cards.h"
-#include "tm_stm32f4_ili9341.h"
-#include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_stmpe811.h"
+
+
 #include <stdio.h>
 #include "core.h"
 #include "lcd.h"
 
 extern TypeMoney budget;
 extern TypeMoney bet;
-extern bool game;
-extern bool betchange;
-extern bool resign;
+extern bool option1;
+extern bool option2;
+extern bool option3;
 extern int ticks;
 
 void SystickHandler(void){
@@ -49,16 +47,16 @@ int main(void) {
 		show_menu();
 		change_menu();
 
-		if (game == true){
+		if (option1 == true){
 		  play_cards(&budget, &bet);
-			game = false;
+			option1 = false;
 		}
-		if(betchange == true){
+		if(option2 == true){
 			print_choose();
 			change_money(&bet);
-			betchange = false;
+			option2 = false;
 		}
-		if (resign == true){
+		if (option3 == true){
 			exit_game();
 		}
 	}

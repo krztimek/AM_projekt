@@ -41,6 +41,7 @@ void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 			exit_game();
 		}
 		if(moneyToBet > moneyToSpend){
+			print_choose();
 			change_money(&bet);
 		}
 

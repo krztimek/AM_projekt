@@ -2,7 +2,7 @@
 
 
 uint8_t rand_function() {
-	return tick_from_systick;
+	return ticks;
 }
 
 
@@ -13,7 +13,4 @@ void cards_randomize(void) {
 		cardsSet[rrand] = cardsSet[cardsSetSize - 1 - i];
 		cardsSet[cardsSetSize - 1 - i] = 0;
 	}
-	for (int i = 0; i<20; i++) {//10 ?? possible 11 cards as winer AAAA 2222 333 = 4 + 8 + 9 = 21
-		(dealer.cardset)[i] = '\0';
-		(player.cardset)[i] = '\0';
 }

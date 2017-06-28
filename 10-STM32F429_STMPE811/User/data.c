@@ -1,4 +1,5 @@
 #include "data.h"
+#include "global_data.h"
 
 bool accept = true;
 
@@ -8,10 +9,12 @@ bool option3 = false;
 
 bool exitflag = false;
 
+int ticks = 0;
+
 uint16_t start_value;
-const uint8_t cardsSetSize = 52;
-char cardsSet[cardsSetSize + 1] = "234567891JQKA234567891JQKA234567891JQKA234567891JQKA";//set of available cards, +1 because of '/0' at end
-char cards[cardsSetSize];// here will be put random cards from cardsSet (function cards_randomize)
+uint8_t cardsSetSize = 52;
+char cardsSet[52 + 1] = "234567891JQKA234567891JQKA234567891JQKA234567891JQKA";//set of available cards, +1 because of '/0' at end
+char cards[52];// here will be put random cards from cardsSet (function cards_randomize)
 
 char stringa[30];
 
