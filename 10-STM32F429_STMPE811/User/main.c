@@ -1,6 +1,6 @@
 /**
  *	Keil project for STMPE811 touch driver controller
- *	
+ *
  *	Works on STM32F429 Discovery board by default
  *
  *	Before you start, select your target, on the right of the "Load" button
@@ -19,26 +19,19 @@
 /* Include my libraries here */
 #include "defines.h"
 #include "menu.h"
-#include "cards.h"
-#include "tm_stm32f4_ili9341.h"
-#include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_stmpe811.h"
+
+
 #include <stdio.h>
 #include "core.h"
-//#include <stdbool.h>
-//#include "LCD.h"
-
-
+#include "lcd.h"
 
 extern TypeMoney budget;
 extern TypeMoney bet;
-extern bool game;
-extern bool betchange;
-extern bool resign;
-
+extern bool option1;
+extern bool option2;
+extern bool option3;
 extern int ticks;
- 
- 
+
 void SystickHandler(void){
 	ticks++;
 }
@@ -53,22 +46,18 @@ int main(void) {
 	while(1) {
 		show_menu();
 		change_menu();
-		if (game == true){
-		  PlayCards(&budget, &bet);
-			game = false;
+
+		if (option1 == true){
+		  play_cards(&budget, &bet);
+			option1 = false;
 		}
-		else if(betchange == true) {
-	
+		if(option2 == true){
 			print_choose();
 			change_money(&bet);
-			betchange = false;
-	
+			option2 = false;
 		}
-		else if (resign == true){
+		if (option3 == true){
 			exit_game();
 		}
-		else {
-			;}
 	}
-
 }
