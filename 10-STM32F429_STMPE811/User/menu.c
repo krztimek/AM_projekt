@@ -15,12 +15,13 @@ void change_money(TypeMoney* Money) {
 		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 	  /* If touch pressed */
 	  while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
-
 			/* Touch valid */
 			if (touchData.x >= A1.x && touchData.x <= A1.x+A1.length && touchData.y >= A1.y && touchData.y <= A1.y+A1.width ){
+				sprintf(stringa, "                             ");//30 spaces
+				TM_ILI9341_Puts(20, 100, stringa, &TM_Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_WHITE);
 				if(Money->ifbudget == false){//bet maximum is budget
 					if(bet.value < budget.value){
-						Money->value += 10;
+						Money->value += betDecreaser;
 					}
 					else{
 						sprintf(stringa, "Not enough money!");
@@ -34,21 +35,26 @@ void change_money(TypeMoney* Money) {
 					break;
 			}
 			else if (touchData.x >= B1.x && touchData.x <= B1.x + B1.length && touchData.y >= B1.y && touchData.y <= B1.y + B1.width ){
+				sprintf(stringa, "                             ");//30 spaces
+			  TM_ILI9341_Puts(20, 100, stringa, &TM_Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_WHITE);
+					Money->value -= betDecreaser;
 				if(Money->value <= betDecreaser - 1 ){
 					sprintf(stringa, "More money!");
 					TM_ILI9341_Puts(20, 100, stringa, &TM_Font_11x18, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
 					Money->value = 0;
 				}
-				else{
-					sprintf(stringa, "More money!");
-					TM_ILI9341_Puts(20, 100, stringa, &TM_Font_11x18, ILI9341_COLOR_WHITE, ILI9341_COLOR_WHITE);
-					Money->value -= betDecreaser;
-				}
 					Delayms(200);
 					break;
 			}
 			else if (touchData.x >= C1.x && touchData.x <= C1.x + C1.length && touchData.y >= C1.y && touchData.y <= C1.y + C1.width ){
-					accept = false;
+					if(Money->value <= 0){
+						accept = true;
+						sprintf(stringa, "Cannot accept, more money!");
+						TM_ILI9341_Puts(20, 100, stringa, &TM_Font_11x18, ILI9341_COLOR_RED, ILI9341_COLOR_WHITE);
+					}
+					else{
+						accept = false;
+					}
 					Delayms(200);
 					break;
 			}
@@ -58,6 +64,7 @@ void change_money(TypeMoney* Money) {
 	if (Money->ifbudget == true) {
 			start_value = Money->value;
 	}
+	
 	accept = true;
 }
 
