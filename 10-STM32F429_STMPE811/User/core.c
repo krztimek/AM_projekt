@@ -1,15 +1,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "core.h"
 
-void CORE_EnterCriticalSection(void){
-	__disable_irq();
-}
-
-
-void CORE_ExitCriticalSection(void) {
-	__enable_irq();
-}
-
 
 int string_to_point(int index) {
 	switch ((char)cards[index]) {

@@ -22,6 +22,8 @@
 ".\targets\stm32f429_discovery\lcd.o"
 ".\targets\stm32f429_discovery\menu.o"
 ".\targets\stm32f429_discovery\core.o"
+".\targets\stm32f429_discovery\data.o"
+".\targets\stm32f429_discovery\rand.o"
 --strict --scatter ".\Targets\STM32F429_Discovery\project.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

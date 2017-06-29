@@ -38,4 +38,3 @@
 .\targets\stm32f429_discovery\stm32f4xx_it.o: ..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\targets\stm32f429_discovery\stm32f4xx_it.o: ..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 .\targets\stm32f429_discovery\stm32f4xx_it.o: ..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\targets\stm32f429_discovery\stm32f4xx_it.o: User\main.h

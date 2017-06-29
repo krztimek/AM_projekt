@@ -54,6 +54,9 @@
 .\targets\stm32f429_discovery\main.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h
 .\targets\stm32f429_discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\targets\stm32f429_discovery\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\targets\stm32f429_discovery\main.o: User\cards.h
 .\targets\stm32f429_discovery\main.o: User\core.h
-.\targets\stm32f429_discovery\main.o: User\cards.h
+.\targets\stm32f429_discovery\main.o: User\data.h
+.\targets\stm32f429_discovery\main.o: User\global_data.h
+.\targets\stm32f429_discovery\main.o: User\rand.h
+.\targets\stm32f429_discovery\main.o: User\menu.h
+.\targets\stm32f429_discovery\main.o: User\lcd.h
