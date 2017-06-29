@@ -10,6 +10,8 @@ bool option3 = false;
 bool exitflag = false;
 
 int ticks = 0;
+uint8_t betDecreaser = 10;
+uint8_t budgetDecreaser = 10;
 
 uint16_t start_value;
 uint8_t cardsSetSize = 52;

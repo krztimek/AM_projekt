@@ -25,7 +25,8 @@ extern char cards[52];// here will be put random cards from cardsSet (function c
 
 extern char stringa[30];
 
-extern volatile uint32_t tick_from_systick;
+extern uint8_t budgetDecreaser;
+extern uint8_t betDecreaser;
 
 extern TypeMoney budget;
 extern TypeMoney bet;
