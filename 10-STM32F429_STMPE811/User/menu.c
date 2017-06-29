@@ -11,7 +11,7 @@ void print_choose(void) {
 
 void change_money(TypeMoney* Money) {
 	while (accept) {
-		sprintf(stringa, "Your %s = %i ", Money->type, Money->value);
+		sprintf(stringa, "Your %s = $%i ", Money->type, Money->value);
 		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 	  /* If touch pressed */
 	  while (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
@@ -75,9 +75,9 @@ void show_menu(void) {
 	TM_ILI9341_Puts(70, 10, "MENU", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
 
 //sprintf(stringa, "Your %s = %i ",budget.type,tick );
-	sprintf(stringa, "Your %s = %i ",budget.type,budget.value );
+	sprintf(stringa, "Your %s = $%i ",budget.type,budget.value );
 	TM_ILI9341_Puts(20, 50, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-	sprintf(stringa, "Your %s = %i ",bet.type,bet.value );
+	sprintf(stringa, "Your %s = $%i ",bet.type,bet.value );
 	TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 
 	draw_rectangle(A2, &TM_Font_11x18, ILI9341_COLOR_ORANGE);
@@ -105,6 +105,7 @@ void change_menu(void) {
 				accept = false;
 				break;
 			}
+			Delayms(200);
 		}
 	}
 
@@ -114,9 +115,9 @@ void change_menu(void) {
 
 void show_new_game(void){
 		TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
-		sprintf(stringa, "Your %s = %i ",budget.type,budget.value );
+		sprintf(stringa, "Your %s = $%i ",budget.type,budget.value );
 		TM_ILI9341_Puts(20, 40, stringa, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-		sprintf(stringa, "Your %s = %i ",bet.type,bet.value );
+		sprintf(stringa, "Your %s = $%i ",bet.type,bet.value );
 		TM_ILI9341_Puts(20, 55, stringa, &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 
 		draw_rectangle(D, &TM_Font_7x10, ILI9341_COLOR_ORANGE);

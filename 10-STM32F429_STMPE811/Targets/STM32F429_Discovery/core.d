@@ -56,7 +56,7 @@
 .\targets\stm32f429_discovery\core.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.h
 .\targets\stm32f429_discovery\core.o: ..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.h
 .\targets\stm32f429_discovery\core.o: User\rand.h
-.\targets\stm32f429_discovery\core.o: User\menu.h
 .\targets\stm32f429_discovery\core.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\targets\stm32f429_discovery\core.o: User\menu.h
 .\targets\stm32f429_discovery\core.o: User\core.h
 .\targets\stm32f429_discovery\core.o: User\lcd.h

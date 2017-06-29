@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Targets\STM32F429_Discovery\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Targets\STM32F429_Discovery\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Thu Jun 29 21:35:02 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060300: Last Updated: Thu Jun 29 22:35:55 2017
 <BR><P>
 <H3>Maximum Stack Usage =        312 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1720,8 +1720,6 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429_439xx.o(RESET)
 </UL>
-<P><STRONG><a name="[1e2]"></a>SystickHandler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
-
 <P><STRONG><a name="[81]"></a>main</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 312 + Unknown Stack Size
 <LI>Call Chain = main &rArr; play_cards &rArr; dealer_play &rArr; show_cards &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
@@ -1777,7 +1775,7 @@ Global Symbols
 <P><STRONG><a name="[f]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429_439xx.o(RESET)
 </UL>
-<P><STRONG><a name="[10]"></a>SysTick_Handler</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, stm32f4xx_it.o(.text))
+<P><STRONG><a name="[10]"></a>SysTick_Handler</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, stm32f4xx_it.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = SysTick_Handler &rArr; TimingDelay_Decrement
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimingDelay_Decrement
@@ -1793,7 +1791,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f429_439xx.o(.text)
 </UL>
-<P><STRONG><a name="[1e3]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, system_stm32f4xx.o(.text), UNUSED)
+<P><STRONG><a name="[1e2]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, system_stm32f4xx.o(.text), UNUSED)
 
 <P><STRONG><a name="[f5]"></a>LCDInitialization</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = LCDInitialization &rArr; TM_ILI9341_Init &rArr; TM_SPI_Init &rArr; TM_SPIx_Init &rArr; TM_SPI2_INT_InitPins &rArr; TM_GPIO_InitAlternate &rArr; TM_GPIO_INT_Init
@@ -1867,15 +1865,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[f9]"></a>change_menu</STRONG> (Thumb, 182 bytes, Stack size 32 bytes, menu.o(.text))
+<P><STRONG><a name="[f9]"></a>change_menu</STRONG> (Thumb, 188 bytes, Stack size 32 bytes, menu.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = change_menu &rArr; TM_STMPE811_ReadTouch &rArr; TM_STMPE811_ReadX &rArr; TM_STMPE811_Read &rArr; TM_I2C_Read &rArr; TM_I2C_Start
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_STMPE811_ReadTouch
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[104]"></a>show_new_game</STRONG> (Thumb, 390 bytes, Stack size 40 bytes, menu.o(.text))
+<P><STRONG><a name="[104]"></a>show_new_game</STRONG> (Thumb, 386 bytes, Stack size 40 bytes, menu.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 224 + Unknown Stack Size
 <LI>Call Chain = show_new_game &rArr; draw_rectangle &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
@@ -1898,7 +1897,7 @@ Global Symbols
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayms
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Puts
 </UL>
-<BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dealer_play
+<BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dealer_play
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;play_cards
 </UL>
 
@@ -1916,21 +1915,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_cards
 </UL>
 
-<P><STRONG><a name="[108]"></a>dealer_play</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, core.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 248 + Unknown Stack Size
-<LI>Call Chain = dealer_play &rArr; show_cards &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
-</UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayms
-<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_cards
-</UL>
-<BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;play_cards
-</UL>
-
-<P><STRONG><a name="[fb]"></a>exit_game</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, core.o(.text))
+<P><STRONG><a name="[fb]"></a>exit_game</STRONG> (Thumb, 304 bytes, Stack size 16 bytes, core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = exit_game &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
 <BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayms
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Puts
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TM_ILI9341_Fill
 </UL>
@@ -1938,14 +1928,24 @@ Global Symbols
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[fa]"></a>play_cards</STRONG> (Thumb, 306 bytes, Stack size 64 bytes, core.o(.text))
+<P><STRONG><a name="[109]"></a>dealer_play</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, core.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 248 + Unknown Stack Size
+<LI>Call Chain = dealer_play &rArr; show_cards &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
+</UL>
+<BR>[Calls]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayms
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_cards
+</UL>
+<BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;play_cards
+</UL>
+
+<P><STRONG><a name="[fa]"></a>play_cards</STRONG> (Thumb, 324 bytes, Stack size 64 bytes, core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 312 + Unknown Stack Size
 <LI>Call Chain = play_cards &rArr; dealer_play &rArr; show_cards &rArr; TM_ILI9341_Puts &rArr; TM_ILI9341_Putc &rArr; TM_ILI9341_INT_Fill &rArr; TM_ILI9341_SetCursorPosition &rArr; TM_ILI9341_SendData
 </UL>
 <BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cards_randomize
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dealer_play
-<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayms
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dealer_play
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayms
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_win
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_cards
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_new_game
@@ -1962,10 +1962,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cards_randomize
 </UL>
 
-<P><STRONG><a name="[10a]"></a>cards_randomize</STRONG> (Thumb, 58 bytes, Stack size 20 bytes, rand.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = cards_randomize
+<P><STRONG><a name="[10a]"></a>cards_randomize</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, rand.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136 + Unknown Stack Size
+<LI>Call Chain = cards_randomize &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand_function
+<BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rand_function
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;play_cards
 </UL>
@@ -1993,7 +1995,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sputc
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
-<BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_win
+<BR>[Called By]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cards_randomize
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_win
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_cards
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_new_game
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_menu
@@ -2041,9 +2044,9 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 
-<P><STRONG><a name="[1e4]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
+<P><STRONG><a name="[1e3]"></a>_memcpy_lastbytes</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_v6.o(.text), UNUSED)
 
-<P><STRONG><a name="[1e5]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[1e4]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
 <P><STRONG><a name="[1]"></a>__rt_heap_escrow</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
@@ -2055,9 +2058,9 @@ Global Symbols
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 
-<P><STRONG><a name="[1e6]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
+<P><STRONG><a name="[1e5]"></a>__use_no_heap</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
 
-<P><STRONG><a name="[1e7]"></a>__heap$guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
+<P><STRONG><a name="[1e6]"></a>__heap$guard</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, hguard.o(.text), UNUSED)
 
 <P><STRONG><a name="[5]"></a>_terminate_user_alloc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, init_alloc.o(.text), UNUSED)
 
@@ -2135,19 +2138,19 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_memcpy
 </UL>
 
-<P><STRONG><a name="[1e8]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[1e7]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[1e9]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[1e8]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[1ea]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[1e9]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[1eb]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[1ea]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[11d]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[1ec]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
+<P><STRONG><a name="[1eb]"></a>__user_perthread_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
 <P><STRONG><a name="[114]"></a>__Heap_ProvideMemory</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, h1_extend.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __Heap_ProvideMemory &rArr; free
@@ -2168,11 +2171,11 @@ Global Symbols
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Broken
 </UL>
 
-<P><STRONG><a name="[1ed]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[1ec]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1ee]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[1ed]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[1ef]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[1ee]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[7d]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
@@ -2230,9 +2233,9 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_fp_1
 </UL>
 
-<P><STRONG><a name="[1f0]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[1ef]"></a>__fplib_config_fpu_vfp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 
-<P><STRONG><a name="[1f1]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
+<P><STRONG><a name="[1f0]"></a>__fplib_config_pureend_doubles</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, fpinit.o(x$fpl$fpinit), UNUSED)
 <P>
 <H3>
 Local Symbols
@@ -2320,13 +2323,15 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_cards
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;show_new_game
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;change_money
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;change_menu
 </UL>
 
-<P><STRONG><a name="[109]"></a>Delayms</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, core.o(.text))
+<P><STRONG><a name="[108]"></a>Delayms</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, core.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delayms
 </UL>
-<BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dealer_play
+<BR>[Called By]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dealer_play
 <LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;play_cards
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit_game
 </UL>
 
 <P><STRONG><a name="[6f]"></a>_printf_input_char</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, _printf_char_common.o(.text))

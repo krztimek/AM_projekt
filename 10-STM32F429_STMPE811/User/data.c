@@ -15,7 +15,7 @@ uint8_t budgetDecreaser = 10;
 
 uint16_t start_value;
 uint8_t cardsSetSize = 52;
-char cardsSet[52 + 1] = "234567891JQKA234567891JQKA234567891JQKA234567891JQKA";//set of available cards, +1 because of '/0' at end
+char cardsSet[52 + 1];//set of available cards, +1 because of '/0' at end
 char cards[52];// here will be put random cards from cardsSet (function cards_randomize)
 
 char stringa[30];

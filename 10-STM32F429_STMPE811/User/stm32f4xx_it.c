@@ -30,6 +30,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
 
+extern int ticks;
+
 /** @addtogroup Template_Project
   * @{
   */
@@ -152,6 +154,7 @@ __weak void TimingDelay_Decrement(void) {
  
 void SysTick_Handler(void)
 {
+	ticks++;
 	TimingDelay_Decrement();
 }
  
