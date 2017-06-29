@@ -30,11 +30,9 @@ extern TypeMoney bet;
 extern bool option1;
 extern bool option2;
 extern bool option3;
-extern int ticks;
 
-void SystickHandler(void){
-	ticks++;
-}
+
+
 
 int main(void) {
   SysTick_Config(SystemCoreClock / 1000);

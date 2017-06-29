@@ -3,7 +3,7 @@
 
 #include "data.h"
 #include "global_data.h"
-
+#include <stdio.h>
 /*
 function that rerurn rand number
 */

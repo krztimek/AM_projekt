@@ -3,6 +3,8 @@
 
 #include "data.h"
 #include "global_data.h"
+#include "rand.h"
+#include "menu.h"
 
 void CORE_EnterCriticalSection(void);
 

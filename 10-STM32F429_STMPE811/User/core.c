@@ -1,15 +1,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "core.h"
 
-void CORE_EnterCriticalSection(void){
-	__disable_irq();
-}
-
-
-void CORE_ExitCriticalSection(void) {
-	__enable_irq();
-}
-
 
 int string_to_point(int index) {
 	switch ((char)cards[index]) {
@@ -37,10 +28,10 @@ void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 	int playerIndicator = player.start_index + 1;
 	cards_randomize();
 	while (1){
-		if(moneyToSpend <= 0){
+		if(moneyToSpend->value <= 0){
 			exit_game();
 		}
-		if(moneyToBet > moneyToSpend){
+		if(moneyToBet->value > moneyToSpend->value){
 			print_choose();
 			change_money(&bet);
 		}
@@ -72,7 +63,10 @@ void play_cards(TypeMoney* moneyToSpend, TypeMoney* moneyToBet){
 				display_win(player);
 				moneyToSpend->value += moneyToBet->value;
 			}
-
+			if (moneyToSpend->value == 0){
+				Delayms(2000);
+				exit_game();
+			}
 			exitflag = false;
 			Delayms(2000);
 			break;
@@ -103,16 +97,49 @@ bool dealer_play(void){
 
 
 void exit_game(void){
-	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+	
+	uint16_t position = 0;
+	
+	while (1){
+		TM_ILI9341_Fill(ILI9341_COLOR_GREEN);
 
-	if (budget.value >= start_value){
-		sprintf(stringa, "You won: %i ", budget.value - start_value);
-	}
-	else{
-		sprintf(stringa, "You lost: %i ", budget.value - start_value);
-	}
+		if (budget.value >= start_value){
+			sprintf(stringa, "You won: $%i", budget.value - start_value);
+		}
+		else{
+			sprintf(stringa, "You lost: $%i", start_value - budget.value);
+		}
 
-	TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE);
-	TM_ILI9341_Puts(50, 110, "Thank you!", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_WHITE);
-	while (1);
+		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_RED);
+		TM_ILI9341_Puts(position % 110, 110 + position % 30, "Thank you!", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_RED);
+		position += 10;
+		Delayms(100);
+		TM_ILI9341_Fill(ILI9341_COLOR_RED);
+
+		if (budget.value >= start_value){
+			sprintf(stringa, "You won: $%i", budget.value - start_value);
+		}
+		else{
+			sprintf(stringa, "You lost: $%i", start_value - budget.value);
+		}
+
+		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE);
+		TM_ILI9341_Puts(position % 110, 110 + position % 60, "Thank you!", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE);
+		position += 10;
+		Delayms(100);
+		
+		TM_ILI9341_Fill(ILI9341_COLOR_BLUE);
+
+		if (budget.value >= start_value){
+			sprintf(stringa, "You won: $%i", budget.value - start_value);
+		}
+		else{
+			sprintf(stringa, "You lost: $%i", start_value - budget.value);
+		}
+
+		TM_ILI9341_Puts(20, 80, stringa, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_GREEN);
+		TM_ILI9341_Puts(position % 110, 110 + position % 90, "Thank you!", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_GREEN);
+		position += 10;
+		Delayms(100);
+	}
 }
